@@ -7,6 +7,7 @@ export default function Page() {
       <ul className='m-4 text-3xl'>
         <li className='hover:text-green-400 hover:underline'><Link href="/week-2">Week 2 Assignment</Link></li>
         <li className='hover:text-green-400 hover:underline'><Link href="/week-3">Week 3 Assignment</Link></li>
+        <li className='hover:text-green-400 hover:underline'><Link href="/week-4">Week 4 Assignment</Link></li>
       </ul>
     </div>
   );
