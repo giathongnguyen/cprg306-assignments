@@ -5,7 +5,7 @@ import ItemList from './item-list.js';
 import NewItem from './new-item.js';
 import itemData from './items.json';
 import { useState } from 'react';
-import { useUserAuth } from './_utils/auth-context';
+import { useUserAuth } from '../_utils/auth-context.js';
 
 export default function Page() {
     const [items, setItems] = useState(itemData);
