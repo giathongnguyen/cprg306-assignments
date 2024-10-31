@@ -5,7 +5,7 @@ import ItemList from './item-list.js';
 import NewItem from './new-item.js';
 import itemData from './items.json';
 import { useState } from 'react';
-import { useUserAuth } from '../_utils/auth-context.js';
+import { useUserAuth } from './_utils/auth-context';
 
 export default function Page() {
     const [items, setItems] = useState(itemData);
@@ -13,7 +13,11 @@ export default function Page() {
     const { user } = useUserAuth();
 
     if (!user) {
-        return null;
+        return (
+            <main>
+                <p>You must be logged in to view this page.</p>
+            </main>
+        );
     }
 
     const handleItemSelect = (item) => {
