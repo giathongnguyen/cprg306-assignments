@@ -20,6 +20,19 @@ export default function Page() {
         );
     }
 
+    useEffect(() => {
+        const loadItems = async () => {
+            try {
+                const fetchedItems = await getItems(user.uid);
+                setItems(fetchedItems);
+            } catch (error) {
+                console.error("Failed to load items:", error);
+            }
+        };
+
+        loadItems();
+    }, [user.uid]);
+
     const handleItemSelect = (item) => {
         const cleanedItemName = item.name.split(',')[0].trim().replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
         setSelectedItemName(cleanedItemName);
@@ -33,28 +46,6 @@ export default function Page() {
             console.error("Failed to add item:", error);
         }
     };
-
-    const loadItems = async () => {
-        try {
-            const fetchedItems = await getItems(user.uid);
-            setItems(fetchedItems); 
-        } catch (error) {
-            console.error("Failed to load items:", error);
-        }
-    };
-
-    useEffect(() => {
-        const loadItems = async () => {
-            try {
-                const fetchedItems = await getItems(user.uid);
-                setItems(fetchedItems);
-            } catch (error) {
-                console.error("Failed to load items:", error);
-            }
-        };
-
-        loadItems();
-    }, [user.uid]);
 
     return (
         <main className="m-3">
