@@ -12,14 +12,6 @@ export default function Page() {
     const [selectedItemName, setSelectedItemName] = useState('');
     const { user } = useUserAuth();
 
-    if (!user) {
-        return (
-            <main>
-                <p>You must be logged in to view this page.</p>
-            </main>
-        );
-    }
-
     useEffect(() => {
         const loadItems = async () => {
             try {
@@ -32,6 +24,14 @@ export default function Page() {
 
         loadItems();
     }, [user.uid]);
+    
+    if (!user) {
+        return (
+            <main>
+                <p>You must be logged in to view this page.</p>
+            </main>
+        );
+    }
 
     const handleItemSelect = (item) => {
         const cleanedItemName = item.name.split(',')[0].trim().replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
